@@ -1,0 +1,23 @@
+.basic {
+    width: 200px;
+    height: 200px;
+    background: rgba(104, 22, 22, 0.4);
+    position: absolute;
+    border-radius: 25px;
+}
+
+.blur {
+    width: 200px;
+    height: 200px;
+    background: rgba(185, 89, 89, 0.5);
+    position: absolute;
+    top:130px;
+    left:50px;
+    backdrop-filter: blur(5px);
+    border-radius: 25px;
+}
+.where {
+    margin-left: 20px;    
+    margin-top: 20px;
+    color:white;
+}

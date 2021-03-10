@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<title>Denver custom software development, 
+Financial Calculator </title>
+<script type="text/javascript">
+
+function calculate() {
+
+  var p = document.getElementById("price").value;
+  p = p - document.getElementById("downPay").value;
+  p = p - document.getElementById("heloc").value;
+  var r = document.getElementById("rate").value;
+  var t = document.getElementById("term").value;
+  document.getElementById("mort").value = amort(p, r, t).toFixed(0);
+
+  var h = document.getElementById("heloc").value;
+  var hr = document.getElementById("hrate").value;
+  var ht = document.getElementById("hterm").value;
+  document.getElementById("helocpay").value = isNum(amort(h, hr, ht).toFixed(0));
+  document.getElementById("total").value = parseFloat(isNum(document.getElementById("mort").value)) + parseFloat(isNum(document.getElementById("helocpay").value)) + parseFloat(isNum(document.getElementById("hoa").value));
+document.getElementById("cash").value = isNum(document.getElementById("downPay").value);
+}
+
+function isNum(nm)
+{
+if(isNaN(nm) || nm == '')
+return 0;
+else
+return nm;
+}
+
+
+function amort(amt, rate, term)
+{
+
+if(isNum(amt) > 0)
+	{
+	rate = rate / 1200;
+
+        var Numerator = rate * (Math.pow(1.0 + rate, term));
+        var Denominator = Math.pow(1.0 + rate, term) - 1;
+
+        return amt * Numerator / Denominator;
+	}
+else
+	return 0;
+}
+
+</script>
+
+</head>
+
+<body style="margin:50; padding:50;bgcolor:red">
+<form id="form1">
+
+<div class="container">
+
+<div class="jumbotron">    
+      <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-3">
+	<h4>Payment Calculator</h4>	
+      </div>
+    </div>
+ </div>
+
+<div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="price">Home Price</label>
+            <input type="text" class="form-control" id="price" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Price is required.
+            </div>
+          </div>
+
+</div>
+
+<div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="downPay">Down Payment</label>
+            <input type="text" class="form-control" id="downPay" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Down Payment is required.
+            </div>
+          </div>
+        </div>
+
+<div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="rate">Mortgage Rate</label>
+            <input type="text" class="form-control" id="rate" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Rate is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="term">Mortgage Term</label>
+            <input type="text" class="form-control" id="term" placeholder="" value="360" required>
+            <div class="invalid-feedback">
+              Term is required.
+            </div>
+          </div>
+        </div>
+
+<div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="heloc">HELOC Amount</label>
+            <input type="text" class="form-control" id="heloc" placeholder="" value="0" required>            
+          </div>
+
+  </div>
+
+<div class="row">
+	<div class="col-md-6 mb-3">
+            <label for="hrate">HELOC Rate</label>
+            <input type="text" class="form-control" id="hrate" placeholder="" value="" required>
+            </div>
+          <div class="col-md-6 mb-3">
+            <label for="hterm">HELOC Term</label>
+            <input type="text" class="form-control" id="hterm" placeholder="" value="" required>
+            
+          </div>
+        </div>
+
+
+<div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="hoa">HOA</label>
+            <input type="text" class="form-control" id="hoa" placeholder="" value="" required>            
+          </div>
+
+  </div>
+<div class="row"> 
+<hl width="100%" height="2px"/> 
+</div>
+
+<div class="row">        
+        <div class="col-md-6 col-lg-4 col-xl-3">
+<button type ="button" onclick="calculate()" >Calculate</button>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 mb-2">
+            <label for="mort">Mortgage</label>
+            <input type="text" class="form-control" id="mort" placeholder="" value="" required>
+            </div>
+          <div class="col-md-4 mb-2">
+            <label for="helocpay">HELOC</label>
+            <input type="text" class="form-control" id="helocpay" placeholder="" value="" required>
+            
+          </div>
+	<div class="col-md-4 mb-2">
+            <label for="total">Total</label>
+            <input type="text" class="form-control" id="total" placeholder="" value="" required>
+            </div>
+          <div class="col-md-4 mb-2">
+            <label for="hterm">Cash</label>
+            <input type="text" class="form-control" id="cash" placeholder="" value="" required>
+            
+          </div>
+        </div>
+
+
+</div>
+</form>
+</body>
+</html>
